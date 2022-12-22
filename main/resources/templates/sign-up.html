@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link th:href = "@{/css/main.css}" rel="stylesheet">
+    <title>Lebo sign-up</title>
+</head>
+<body>
+    <div class="bigcont">
+
+        <div class="smallcont3">
+
+        </div>
+
+        <div class="smallcont4">
+            <img th:src="@{/images/Lebo.jpg}" class="rounded imgcont" style="width:300px; height:300px;">
+            <div class="imgcont">
+            <form th:action="@{/signuser}" th:object="${request}" method="post">
+                <label class="form-label" for="firstName">Vardas</label>
+                <input class="form-control" th:field="*{firstName}" type="text"  id="firstName" placeholder="Vardenis"/>
+                
+                <label class="form-label" for="lastName">Pavardė</label>
+                <input class="form-control" th:field="*{lastName}" type="text"  id="lastName" placeholder="Pavardenis"/>
+                
+                <label class="form-label" for="email">Elektroninis paštas</label>
+                <input class="form-control" th:field="*{email}" type="text"  id="email" placeholder="v.pavardenis@email.com"/>
+                
+                <label class="form-label" for="password">Slaptažodis</label>
+                <input class="form-control" th:field="*{password}" type="password"  id="password" placeholder="Slaptažodis"/>
+                
+                <input class="btn btn-success"  type="submit" value="Sign up">   
+             </form>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

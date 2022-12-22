@@ -1,0 +1,72 @@
+.bigcont{
+  display: flex;
+  height: 100vh;
+}
+.smallcont1{
+    width: 40%;
+    align-self: center;
+}
+.smallcont2{
+    width: 60%;
+    background-color:#008C69;
+    display: flex;
+    
+}
+.leftText{
+    align-self: center;
+    justify-content: center;
+    color: white;
+}
+.smallcont3{
+    width: 40%;
+    background-color:#008C69;
+    display: flex;
+
+}
+.smallcont4{
+
+    width: 60%;
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+}
+.imgcont{
+    align-self: center;
+    justify-content: center;
+}
+.successfull{
+    display: flex;
+    flex-direction: column;
+}
+
+.successfull > div{
+    align-self: center;
+}
+.successfull > div > button{
+    margin-bottom: 15px;
+}
+.mainIndex{
+    width: 70%;
+    
+    
+}
+.indexBody{
+    background-color:#008C69;
+    display: flex;
+    justify-content: center;
+}
+
+.mainContent{
+    display: flex;
+    flex-direction: row;
+}
+.cardMargin{
+    margin-top: 20px;
+    margin-right: 30px;
+}
+.mainCardSize{
+    width: 100%;
+    margin-top: 20px;
+}
+
+

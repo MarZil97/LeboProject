@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link th:href = "@{/css/main.css}" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <title>Pagrindinis</title>
+</head>
+
+<body class="indexBody">
+    <div class="mainIndex">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                  <img th:src="@{/images/Lebo.gif}" alt="" width="30" height="30" class="d-inline-block align-text-top">
+                  Lebo
+                </a>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Pagrindinis</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link">Nuomojami daiktai</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Profilis
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <li><a class="dropdown-item" th:href="@{/editProfile/{id}(id=${userProfile.profileID})}">Redaguoti profilį</a></li>
+                  <li><a class="dropdown-item" href="#">Tapti nuomotoju</a></li>
+                  <li><a class="dropdown-item" href="/logout">Atsijungti</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    
+    <div class="mainContent">
+      <div class="card cardMargin" style="width: 18rem;">
+      <td th:switch="${userProfile.profileImage}">
+        <img th:case="null" th:src="@{/images/anonymous-avatar-icon-25.jpg}" class="card-img-top">
+        <img th:case="*" class="card-img-top" th:src="@{'/get/image/'+${userProfile.profileID}}" />
+        </td>
+        <div class="card-body">
+          <h5 class="card-title" th:text="${fName}"></h5>
+          <p class="card-text">Rolė: NUOMININKAS</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Piniginės likutis: <p th:text="${userProfile.walletBallance}"></p> eurų</li>
+          <li class="list-group-item">Šiuo metu išsinuomoti daiktai: </li>
+          <li class="list-group-item">Iš viso išsinuomota: </li>
+        </ul>
+        <div class="card-body">
+          <a href="/depositForm" class="card-link">Papildyti</a>
+          <a href="/uploadform/profileimage" class="card-link">Keisti foto</a>
+        </div>
+      </div>
+
+      <div class="card text-center mainCardSize">
+        <div class="card-header">
+          Kątik paskelbta
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Special title treatment</h5>
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <a href="#" class="btn btn-success">Go somewhere</a>
+        </div>
+        <div class="card-footer text-muted">
+          Lebo
+        </div>
+      </div>
+
+    </div>
+</div>
+</body>
+
+</html>
