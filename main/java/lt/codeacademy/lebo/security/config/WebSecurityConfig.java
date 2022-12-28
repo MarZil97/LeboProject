@@ -29,7 +29,7 @@ public class WebSecurityConfig {
 			.authorizeRequests()
 			//.antMatchers("/filluserprofile/{id}", "/userprofile{id}")
 			//.hasRole(AppUserRole.USER.getRole())
-			.antMatchers("/index/*", "/css/*", "/js/*", "/images/*", "/signup", "/", "/index", "/signuser", "/signup/successfull", "/login", "/perform_login", "/login.html", "/filluserprofile/{id}", "/userprofile/{id}", "/buyer/index", "/uploadform/profileimage", "/upload", "/editProfile/{id}", "updateProfile/{id}")
+			.antMatchers("/index/*", "/css/*", "/js/*", "/images/*", "/signup", "/", "/index", "/signuser", "/signup/successfull", "/login", "/perform_login", "/login.html", "/filluserprofile/{id}", "/userprofile/{id}", "/buyer/index", "/uploadform/profileimage", "/upload", "/editProfile/{id}", "updateProfile/{id}", "/items", "/signitems", "/additem")
 			.permitAll()
 			.anyRequest()
 			.authenticated()

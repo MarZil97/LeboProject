@@ -2,6 +2,7 @@ package lt.codeacademy.lebo.controller;
 
 import java.io.IOException;
 import java.security.Principal;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,8 @@ import lt.codeacademy.lebo.fakebankacc.FakeBankAccountService;
 import lt.codeacademy.lebo.image.ImageUtil;
 import lt.codeacademy.lebo.image.ProfileImage;
 import lt.codeacademy.lebo.image.ProfileImageService;
+import lt.codeacademy.lebo.item.Item;
+import lt.codeacademy.lebo.item.ItemService;
 import lt.codeacademy.lebo.registration.RegistrationRequest;
 import lt.codeacademy.lebo.registration.RegistrationService;
 
@@ -57,6 +60,9 @@ public class MainController {
 	
 	@Autowired
 	private FakeBankAccountService bankAccountService;
+	
+	@Autowired
+	private ItemService itemService;
 
 	@GetMapping
 	public String redirect() {
@@ -227,5 +233,37 @@ public class MainController {
 	    	
 	    	return "redirect:/" + userProfile.getChooseRole().toLowerCase() + "/index";
 	    	
+	    }
+	    
+	    @GetMapping("/items")
+	    public String showItemsPage(@AuthenticationPrincipal AppUser appUser, UserProfile userProfile, Model model) {
+	    	appUser = (AppUser) appUserService.loadUserByUsername(userProfileService.getLoggedInUserUsername());
+	    	userProfile = appUser.getUserProfile();
+	    	model.addAttribute("items", itemService.findUserItems(userProfile));
+	    	return "items";
+	    }
+	    
+	    @GetMapping("/signitems")
+	    public String showItemSignForm(@AuthenticationPrincipal AppUser appUser, UserProfile userProfile, Item item) {
+	    	appUser = (AppUser) appUserService.loadUserByUsername(userProfileService.getLoggedInUserUsername());
+	    	userProfile = appUser.getUserProfile();
+	    	return "add-item";
+	    }
+	    
+	    @PostMapping("/additem")
+	    public String addItem(@AuthenticationPrincipal AppUser appUser, UserProfile userProfile, Item item, Model model, BindingResult result) {
+	    	appUser = (AppUser) appUserService.loadUserByUsername(userProfileService.getLoggedInUserUsername());
+	    	userProfile = appUser.getUserProfile();
+	    	if(result.hasErrors()) {
+	    		return "add-item";
+	    	}
+	    	//List<Item> items = userProfile.getItems();
+	    	//items.add(item);
+	    	itemService.addUserItem(item, userProfile);
+	    	itemService.saveItem(item);
+	    	
+	    	
+	    	return "redirect:/" + userProfile.getChooseRole().toLowerCase() + "/index";
+	    
 	    }
 }
